@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^22.4.0",
     "eslint": "^9.9.0",
+    "typescript": "^5.5.4",
     "vitest": "^2.0.5"
   }
 }
