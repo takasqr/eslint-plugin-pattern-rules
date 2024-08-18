@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
-import bannedRule from './rules/banned';
-import requiredRule from './rules/required';
+import bannedRule from './rules/banned.js';
+import requiredRule from './rules/required.js';
 
 const pkg = JSON.parse(readFileSync(resolve('./package.json'), 'utf-8'));
 

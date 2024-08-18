@@ -7,7 +7,7 @@ const config = [
     },
     rules: {
       'patternRules/banned': 'error',
-      'patternRules/required': 'warn',
+      'patternRules/required': 'error',
     },
   },
 ];
