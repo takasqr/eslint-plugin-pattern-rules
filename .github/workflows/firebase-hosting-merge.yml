@@ -9,11 +9,27 @@ name: Deploy to Firebase Hosting on merge
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: read
+
     steps:
-      - uses: actions/checkout@v3
-      - run: npm ci && npm run generate
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@takasqr'
+
+      - run: |
+          cd site
+          npm ci
+          npm run generate
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
+          entryPoint: ./site
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ESLINT_PLUGIN_PATTERN_RULES }}'
           channelId: live
