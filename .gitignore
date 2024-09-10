@@ -5,3 +5,6 @@ dist
 
 # Firebase
 .firebase
+
+# Mac
+.DS_Store
