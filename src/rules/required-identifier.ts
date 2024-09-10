@@ -1,10 +1,10 @@
 import { Rule } from "eslint";
 
-const requiredRule: Rule.RuleModule = {
+const requiredIdentifierRule: Rule.RuleModule = {
   meta: {
     type: "suggestion",
     docs: {
-      description: "Require specific patterns in identifiers and literals",
+      description: "Require specific patterns in identifiers",
       category: "Best Practices",
       recommended: false,
     },
@@ -31,16 +31,12 @@ const requiredRule: Rule.RuleModule = {
     return {
       'Program:exit'(node) {
         const sourceCode = context.getSourceCode();
-        const tokens = sourceCode.ast.tokens;
+        const identifiers = sourceCode.ast.tokens.filter(token => token.type === 'Identifier');
 
-        const identifiersAndLiterals = tokens.filter(token => 
-          token.type === 'Identifier' || (token.type === 'String' && typeof token.value === 'string')
-        );
-
-        for (const token of identifiersAndLiterals) {
+        for (const identifier of identifiers) {
           for (const pattern of patterns) {
             const regex = new RegExp(pattern);
-            if (regex.test(token.value)) {
+            if (regex.test(identifier.value)) {
               hasRequiredPattern = true;
               break;
             }
@@ -50,7 +46,7 @@ const requiredRule: Rule.RuleModule = {
         if (!hasRequiredPattern) {
           context.report({
             node,
-            message: `No identifiers or literals matching the required patterns: ${patterns.join(", ")}.`,
+            message: `No identifiers matching the required patterns: ${patterns.join(", ")}.`,
           });
         }
       },
@@ -58,4 +54,4 @@ const requiredRule: Rule.RuleModule = {
   },
 };
 
-export default requiredRule;
+export default requiredIdentifierRule;

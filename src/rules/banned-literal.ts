@@ -47,16 +47,6 @@ const bannedRule: Rule.RuleModule = {
     }).filter(Boolean);
 
     return {
-      Identifier(node) {
-        for (const regex of regexes) {
-          if (regex && regex.test(node.name)) {
-            context.report({
-              node,
-              message: `Identifier "${node.name}" is banned by pattern "${regex.source}".`,
-            });
-          }
-        }
-      },
       Literal(node) {
         if (typeof node.value === "string") {
           for (const regex of regexes) {
