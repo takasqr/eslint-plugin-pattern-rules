@@ -4,11 +4,11 @@ export default [
   {
     files: ["*.js", "*.ts"],
     plugins: {
-      patternRules,
+      'pattern-rules': patternRules,
     },
     rules: {
-      'patternRules/banned': ['error', { patterns: ["forbidde*"] }],
-      'patternRules/required': ['error', { patterns: ["required"] }],
+      'pattern-rules/banned': ['error', { patterns: ["forbidde*"] }],
+      'pattern-rules/required': ['error', { patterns: ["required"] }],
     },
   },
 ];
