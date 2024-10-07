@@ -3,5 +3,4 @@
 </template>
 
 <script setup lang="ts">
-window.location.replace('/en')
 </script>
