@@ -22,6 +22,30 @@ describe('bannedRule', () => {
     });
   });
 
+  it('should not report errors for literals not matching "allowed$" pattern', () => {
+    ruleTester.run('banned', bannedLiteralRule, {
+      valid: [
+        {
+          code: 'let someVariable = "allowedString";',
+          options: [{ patterns: ['allowed$'] }],
+        },
+      ],
+      invalid: [],
+    });
+  });
+
+  it('should not report errors for literals not matching "someVariable$" pattern', () => {
+    ruleTester.run('banned', bannedLiteralRule, {
+      valid: [
+        {
+          code: 'let someVariable = "allowedString";',
+          options: [{ patterns: ['someVariable$'] }],
+        },
+      ],
+      invalid: [],
+    });
+  });
+
   it('should report errors for literals matching the banned pattern', () => {
     ruleTester.run('banned', bannedLiteralRule, {
       valid: [],
@@ -30,6 +54,19 @@ describe('bannedRule', () => {
           code: 'let someVariable = "bannedString";',
           options: [{ patterns: ['bannedString'] }],
           errors: [{ message: 'Literal "bannedString" is banned by pattern "bannedString".' }],
+        },
+      ],
+    });
+  });
+
+  it('should report errors for literals matching "hello" pattern', () => {
+    ruleTester.run('banned', bannedLiteralRule, {
+      valid: [],
+      invalid: [
+        {
+          code: 'let someVariable = "hello world";',
+          options: [{ patterns: ['hello'] }],
+          errors: [{ message: 'Literal "hello world" is banned by pattern "hello".' }],
         },
       ],
     });

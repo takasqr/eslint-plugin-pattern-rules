@@ -10,7 +10,7 @@ const ruleTester = new RuleTester({
 });
 
 describe('required rule', () => {
-  it('should correctly identify required patterns', () => {
+  it('should pass when identifiers or literals match the required pattern', () => {
     ruleTester.run('required', requiredRule, {
       valid: [
         {
@@ -18,11 +18,18 @@ describe('required rule', () => {
           options: [{ patterns: ["required"] }],
         },
       ],
+      invalid: [],
+    });
+  })
+
+  it('should fail when no identifiers or literals match the required pattern', () => {
+    ruleTester.run('required', requiredRule, {
+      valid: [],
       invalid: [
         {
           code: "let someOtherName = 1;",
           options: [{ patterns: ["required"] }],
-          errors: [{ message: 'No identifiers matching the required patterns: required.' }],
+          errors: [{ message: 'No identifiers or literals matching the required patterns: required.' }],
         },
       ],
     });
