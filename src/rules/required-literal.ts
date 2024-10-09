@@ -1,4 +1,7 @@
 import { Rule } from "eslint";
+import { createRegexes } from "../utils/createRegexes.js";
+import { matchPatterns } from "../utils/matchPatterns.js";
+import { filterTokens } from "../utils/filterTokens.js";
 
 const requiredLiteralRule: Rule.RuleModule = {
   meta: {
@@ -26,26 +29,15 @@ const requiredLiteralRule: Rule.RuleModule = {
   create(context) {
     const options = context.options[0] || {};
     const patterns = options.patterns || [];
-    let hasRequiredPattern = false;
+    const regexes = createRegexes(patterns, context);
 
     return {
       'Program:exit'(node) {
         const sourceCode = context.getSourceCode();
         const tokens = sourceCode.ast.tokens;
+        const identifiers = filterTokens(tokens, ['String']);
 
-        const literals = tokens.filter(token => token.type === 'String' && typeof token.value === 'string');
-
-        for (const literal of literals) {
-          for (const pattern of patterns) {
-            const regex = new RegExp(pattern);
-            if (regex.test(literal.value)) {
-              hasRequiredPattern = true;
-              break;
-            }
-          }
-        }
-
-        if (!hasRequiredPattern) {
+        if (!matchPatterns(identifiers, regexes)) {
           context.report({
             node,
             message: `No string literals matching the required patterns: ${patterns.join(", ")}.`,

@@ -1,4 +1,7 @@
 import { Rule } from "eslint";
+import { createRegexes } from "../utils/createRegexes.js";
+import { matchPatterns } from "../utils/matchPatterns.js";
+import { filterTokens } from "../utils/filterTokens.js";
 
 const requiredIdentifierRule: Rule.RuleModule = {
   meta: {
@@ -26,24 +29,15 @@ const requiredIdentifierRule: Rule.RuleModule = {
   create(context) {
     const options = context.options[0] || {};
     const patterns = options.patterns || [];
-    let hasRequiredPattern = false;
+    const regexes = createRegexes(patterns, context);
 
     return {
       'Program:exit'(node) {
         const sourceCode = context.getSourceCode();
-        const identifiers = sourceCode.ast.tokens.filter(token => token.type === 'Identifier');
+        const tokens = sourceCode.ast.tokens;
+        const identifiers = filterTokens(tokens, ['Identifier']);
 
-        for (const identifier of identifiers) {
-          for (const pattern of patterns) {
-            const regex = new RegExp(pattern);
-            if (regex.test(identifier.value)) {
-              hasRequiredPattern = true;
-              break;
-            }
-          }
-        }
-
-        if (!hasRequiredPattern) {
+        if (!matchPatterns(identifiers, regexes)) {
           context.report({
             node,
             message: `No identifiers matching the required patterns: ${patterns.join(", ")}.`,

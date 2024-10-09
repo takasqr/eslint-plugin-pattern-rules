@@ -1,4 +1,6 @@
 import { Rule } from "eslint";
+import { createRegexes } from "../utils/createRegexes.js";
+import { checkNodeAgainstPatterns } from "../utils/checkNodeAgainstPatterns.js";
 
 const bannedIdentifierRule: Rule.RuleModule = {
   meta: {
@@ -26,18 +28,11 @@ const bannedIdentifierRule: Rule.RuleModule = {
   create(context) {
     const options = context.options[0] || {};
     const patterns = options.patterns || [];
+    const regexes = createRegexes(patterns, context);
 
     return {
       Identifier(node) {
-        for (const pattern of patterns) {
-          const regex = new RegExp(pattern);
-          if (regex.test(node.name)) {
-            context.report({
-              node,
-              message: `Identifier "${node.name}" is banned by pattern "${pattern}".`,
-            });
-          }
-        }
+        checkNodeAgainstPatterns(node, node.name, regexes, context, "Identifier");
       },
     };
   },
