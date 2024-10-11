@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-pattern-rules",
   "private": false,
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "An ESLint plugin that allows you to ban or require specific patterns in code identifiers and literals using regular expressions. Ideal for enforcing consistent naming conventions and coding standards across your project.",
   "files": ["dist"], 
   "repository": {
