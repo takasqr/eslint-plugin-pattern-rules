@@ -3,7 +3,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     "@nuxt/content",
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@nuxt/eslint'
   ],
   css: ['~/assets/css/main.css'],
   postcss: {
