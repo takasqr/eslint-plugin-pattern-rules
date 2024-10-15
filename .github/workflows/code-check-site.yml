@@ -1,0 +1,42 @@
+name: Code Check
+'on':
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+
+      - name: ci
+        run: |
+          cd site
+          npm ci
+
+      - name: lint
+        run: |
+          cd site
+          npm run lint
+
+      - name: typecheck
+        run: |
+          cd site
+          npm run typecheck
+          
+      - name: test:unit
+        run: |
+          npm run test:unit
+  
+      - name: testt:e2e
+        run: |
+          npx playwright install
+          npm run test:e2e
+
