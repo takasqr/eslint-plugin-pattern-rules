@@ -25,3 +25,5 @@ logs
 
 # GitHub Packages
 .npmrc
+
+playwright-report
