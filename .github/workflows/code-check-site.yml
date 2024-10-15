@@ -1,4 +1,4 @@
-name: Code Check
+name: Code Check Site
 'on':
   push:
     branches:

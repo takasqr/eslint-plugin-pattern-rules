@@ -1,4 +1,4 @@
-name: Code Check
+name: Code Check Plugin
 'on':
   push:
     branches:
