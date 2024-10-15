@@ -1,8 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from "firebase/auth";
-import { getStorage } from "firebase/storage";
-import { getFunctions } from 'firebase/functions';
-import { getFirestore, initializeFirestore } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FB_API_KEY,
@@ -13,9 +11,7 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FB_APP_ID
 };
 
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
-const functions = getFunctions(app);
+initializeApp(firebaseConfig);
 const db = getFirestore();
 const auth = getAuth();
 
