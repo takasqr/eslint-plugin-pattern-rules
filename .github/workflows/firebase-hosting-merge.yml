@@ -22,12 +22,25 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@takasqr'
 
-      - run: |
+      - name: ci
+        run: |
           cd site
           npm ci
-          npm run generate
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: lint
+        run: |
+          npm run lint
+            
+      - name: test
+        run: |
+          npm run test
+
+      - name: generate
+        run: |
+          cd site  
+          npm run generate
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
