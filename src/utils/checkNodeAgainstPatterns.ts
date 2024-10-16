@@ -1,7 +1,8 @@
 import { Rule } from "eslint";
+import { Node } from "estree"
 
 export function checkNodeAgainstPatterns(
-  node: any,
+  node: Node,
   value: string,
   regexes: RegExp[],
   context: Rule.RuleContext,
