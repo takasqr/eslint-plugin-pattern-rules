@@ -31,11 +31,18 @@ jobs:
 
       - name: lint
         run: |
+          cd site
           npm run lint
             
       - name: test
         run: |
-          npm run test
+          cd site
+          npm run test:unit
+
+      - name: test
+        run: |
+          cd site
+          npm run test:e2e
 
       - name: generate
         run: |

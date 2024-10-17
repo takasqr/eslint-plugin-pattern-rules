@@ -41,10 +41,12 @@ jobs:
           
       - name: test:unit
         run: |
+          cd site
           npm run test:unit
   
       - name: testt:e2e
         run: |
+          cd site
           npx playwright install
           npm run test:e2e
 
