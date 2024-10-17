@@ -39,6 +39,7 @@
     "eslint": "^9.12.0",
     "eslint-plugin-pattern-rules": "^0.1.5",
     "happy-dom": "^15.7.4",
-    "playwright-core": "^1.48.0"
+    "playwright-core": "^1.48.0",
+    "vitest": "^2.1.3"
   }
 }
