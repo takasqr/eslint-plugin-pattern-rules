@@ -33,7 +33,14 @@ jobs:
             
       - name: test
         run: |
-          npm run test
+          cd site
+          npm run test:unit
+
+      - name: test
+        run: |
+          cd site
+          npx playwright install
+          npm run test:e2e
 
       - name: generate
         run: |

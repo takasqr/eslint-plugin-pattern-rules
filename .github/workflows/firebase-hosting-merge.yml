@@ -42,6 +42,7 @@ jobs:
       - name: test
         run: |
           cd site
+          npx playwright install
           npm run test:e2e
 
       - name: generate
