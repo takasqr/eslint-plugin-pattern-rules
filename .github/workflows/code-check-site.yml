@@ -36,6 +36,7 @@ jobs:
       - name: typecheck
         run: |
           cd site
+          npm run prepare
           npm run typecheck
           
       - name: test:unit

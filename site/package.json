@@ -7,6 +7,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "prepare": "nuxt prepare",
     "postinstall": "nuxt prepare",
     "test:unit": "vitest",
     "test:e2e": "playwright test",
