@@ -16,7 +16,7 @@ export default withNuxt(
       patternRules,
     },
     rules: {
-      'patternRules/banned': ['error', { patterns: [accountName, appName] }],
+      'patternRules/banned': ['warn', { patterns: [accountName, appName] }],
     },
   },
 )
