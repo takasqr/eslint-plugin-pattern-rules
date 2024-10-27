@@ -1,7 +1,11 @@
 <template>
   <div class="bg-white">
     <HeaderView />
-    <slot />
+
+    <Container class="md:mt-6 lg:mt-10 xl:mt-16 mb-16 md:mb-28">
+      <slot />
+    </Container>
+
     <FooterView />
   </div>
 </template>
@@ -10,6 +14,7 @@
 import { useHead } from '@unhead/vue'
 import FooterView from '../components/custom/general/footer/en-footer-view.vue'
 import HeaderView from '../components/custom/general/header/en-header-view.vue'
+import Container from '@takasqr/tw-vue-ui/basic/container/Container.vue'
 
 useHead({
   htmlAttrs: {
