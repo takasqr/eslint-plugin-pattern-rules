@@ -12,8 +12,8 @@
 
 <script setup lang="ts">
 import { useHead } from '@unhead/vue'
-import FooterView from '../components/custom/general/footer/en-footer-view.vue'
-import HeaderView from '../components/custom/general/header/en-header-view.vue'
+import FooterView from '../components/custom/general/footer/ja-footer-view.vue'
+import HeaderView from '../components/custom/general/header/ja-header-view.vue'
 import Container from '@takasqr/tw-vue-ui/basic/container/Container.vue'
 
 useHead({
