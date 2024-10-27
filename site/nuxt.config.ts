@@ -34,5 +34,14 @@ export default defineNuxtConfig({
     ],
     strategy: "no_prefix",
     vueI18n: './i18n.config.ts'
-  }
+  },
+  content: {
+    highlight: {
+      theme: {
+        default: 'github-dark',
+        dark: 'github-dark'
+      },
+      preload: ['json', 'js', 'ts', 'html', 'css', 'vue', 'diff', 'shell', 'markdown', 'yaml', 'bash', 'ini', 'c', 'cpp', 'sql']
+    }
+  },
 })
