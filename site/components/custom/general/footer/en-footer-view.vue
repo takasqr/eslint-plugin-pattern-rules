@@ -4,7 +4,7 @@
     <div class="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
       <div class="xl:grid xl:grid-cols-3 xl:gap-8">
         <div class="bg-white h-14 w-14 p-2 rounded-full flex justify-center items-center">
-          <img class="h-8 rounded" src="https://takasqr.dev/logo.svg" alt="" />
+          <img class="h-8 rounded" src="/icon.png" alt="" />
         </div>
         <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
           <div class="md:grid md:grid-cols-2 md:gap-8">
