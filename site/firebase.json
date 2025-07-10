@@ -6,6 +6,18 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "trailingSlash": false
+    "trailingSlash": false,
+    "redirects": [
+      {
+        "source": "/en",
+        "destination": "https://eslint.regexp.app/en/",
+        "type": 301
+      },
+      {
+        "source": "/ja",
+        "destination": "https://eslint.regexp.app/ja/",
+        "type": 301
+      }
+    ]
   }
 }
